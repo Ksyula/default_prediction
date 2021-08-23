@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'Serverless default predictor'
+Globals:
+  Function:
+    Timeout: 10
+Resources:
+  DefaultPredictorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: DefaultPredictor
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      MemorySize: 1024
+      Role: arn:aws:iam::918203234730:role/LambdaCanReadS3
+      Environment:
+        Variables:
+          s3_bucket: sam-sklearn-lam-132
+          model_name: pickled_model.pickle
+      Events:
+        WineClassifier:
+          Type: Api
+          Properties:
+            Path: /predict
+            Method: post
+Outputs:
+  WineClassifierApi:
+    Description: API Gateway endpoint URL for Prod stage for DefaultPrediction function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/predict/
