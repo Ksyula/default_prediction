@@ -50,4 +50,28 @@
 7. Deploy model
 8. Make a request to the pipeline endpoint
 
+### API Gateway endpoint exposing
+Besides AWS SageMaker I tested some other AWS deployment options including AWS Serverless Application Model (SAM).
+It allows deploing ML models with Serverless API (AWS Lambda). 
+I managed to expose API endpoint with `helloworld` application behind in order to try AWS Lambda.
+
+#### Used technologies
+- ECR: Container & Registy
+- AWS Lambda: Serving API
+- SAM: Serverless Framework
+
+#### Query the endpoint
+GET request:
+```
+https://x3jp27x3t3.execute-api.eu-central-1.amazonaws.com/test/hello
+```
+Expected response:
+```
+{
+    "message": "hello world"
+}
+```
+
+
+ 
 
