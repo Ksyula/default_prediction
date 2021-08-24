@@ -1,6 +1,5 @@
 from sklearn.base import TransformerMixin, BaseEstimator
 import pandas as pd
-import numpy as np
 
 
 class ColumnSelector(BaseEstimator, TransformerMixin):
@@ -9,8 +8,10 @@ class ColumnSelector(BaseEstimator, TransformerMixin):
 
     def fit(self, X, y=None):
         return self
-    
+
     def transform(self, X):
+        assert isinstance(X, pd.DataFrame)
+
         try:
             return X[self.columns]
         except KeyError:
