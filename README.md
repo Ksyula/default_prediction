@@ -30,10 +30,13 @@
 * **python3.8**
 * **aws-cli**
 
+## Submissions
+1. A verbose explanation of the model training and validation could be found [here](model_explanation.md).
+2. CSV file with resulting predictions could be found [here](data/submission.csv).
+
 ## Steps
 
 ### Model training (`/Model.ipynb`)
-A verbose explanation of the model training and validation could be found [here](model_explanation.md).
 1. Read and explore dataset (excluded from the current repo due to privacy reasons)
 2. Train baseline defualt prediction model
 3. Evaluate and сompare different models (Logistic Regression and Tree-based ensemble models) with a set of metrics
