@@ -1,27 +1,21 @@
-# Predicting probability of defauld
+# Predicting probability of defaul
 
 ## Workflow
 
 - Model training
 - Generate predictions
-- Build, Test, and Deploy to AWS
-
-## Technologies
-- Docker + ECR: Container & Registy
-- AWS Lambda: Serving API
-- SAM: Serverless Framework 
-- GitHub Actions: CI/CD
+- Deploy the model to AWS using SageMaker
 
 ## Project Structure
 ```
 |-- data
     |-- submission.csv
-|-- service
-     |-- app.py: source code lambda handler
-     |-- Dockerfile: to build the Docker image
-     |-- requirements.txt: dependencies
-|-- samconfig.toml: configured by SAM
-|-- template.yaml: A template that defines the application's AWS resources.
+|-- sagemaker
+     |-- data
+     |-- models
+     |-- AWS - SageMaker.ipynb
+     |-- featurizer_local.py
+     |-- featurizer_remote.py
 |-- src
     |-- models
         |-- baseline_model.py: Class for training the binary classification model
@@ -33,14 +27,8 @@
 
 ## Pre-requisites
 
-* **python3.9**
-* **Docker** 
-* **awscli**
-* **aws-sam-cli**
-
-## Setup
-- AWS account with IAM user & required permissions
-- ECR Repository
+* **python3.8**
+* **aws-cli**
 
 ## Steps
 
@@ -52,10 +40,14 @@
 5. Generate predictions (`/data/submission.csv`)
 6. Dump the best estimator (`/pickled_model.pickle`)
 
-### Build
-1. Init sam to generate project structure
-2. Build sam 
-3. Deploy image to AWS ECR
-4. AWS will integrate image with Lambda function
+### Model deployment (`sagemaker/AWS - SageMaker.ipynb`)
+1. Define Sagemaker session and role
+2. Preprocessing data and train the model
+3. Create SageMaker Scikit Estimator
+4. Batch transform training data
+5. Fit a Tree-based Model with the preprocessed data
+6. Serial Inference Pipeline with Scikit preprocessor and classifier
+7. Deploy model
+8. Make a request to the pipeline endpoint
 
 
