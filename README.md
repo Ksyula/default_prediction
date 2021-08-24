@@ -33,6 +33,7 @@
 ## Steps
 
 ### Model training (`/Model.ipynb`)
+A verbose explanation of the model training and validation could be found [here](model_explanation.md).
 1. Read and explore dataset (excluded from the current repo due to privacy reasons)
 2. Train baseline defualt prediction model
 3. Evaluate and сompare different models (Logistic Regression and Tree-based ensemble models) with a set of metrics
